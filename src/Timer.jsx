@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
-import alert from './assets/wrong-answer-bass-buzzer.wav'
 import { useTimer } from 'react-timer-hook'
+import alert from './assets/wrong-answer-bass-buzzer.wav'
 
 const Timer = (props) => {
   const alertSound = new Audio(alert)
@@ -14,11 +14,10 @@ const Timer = (props) => {
   })
 
   return (
-    <div>
+    <div className='timer'>
       <div>
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
-      <p>{isRunning ? 'Running' : 'Not running'}</p>
       {isRunning ? '' : <button onClick={start}>Start</button>}
       {isRunning ? <button onClick={pause}>Pause</button> : ''}
       {isRunning ? (
