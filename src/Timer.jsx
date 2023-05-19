@@ -1,6 +1,9 @@
 import { useTimer } from 'react-timer-hook'
 
-const Timer = ({ expiryTimestamp }) => {
+const Timer = () => {
+  const time = new Date()
+  const expiryTimestamp = time.setSeconds(time.getSeconds() + 600)
+
   const { seconds, minutes, isRunning, start, pause, resume, restart } =
     useTimer({
       expiryTimestamp,
@@ -8,7 +11,7 @@ const Timer = ({ expiryTimestamp }) => {
 
   return (
     <div>
-      <div style={{ fontSize: '100px' }}>
+      <div>
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
       <p>{isRunning ? 'Running' : 'Not running'}</p>
