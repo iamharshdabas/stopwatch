@@ -5,11 +5,11 @@ import { useTimer } from 'react-timer-hook'
 const Timer = (props) => {
   const alertSound = new Audio(alert)
   const time = new Date()
-  const expiryTimestamp = time.setSeconds(time.getSeconds() + props.duration)
+  const expiryTime = time.setSeconds(time.getSeconds() + props.duration)
 
   const { seconds, minutes, isRunning, start, pause, resume, restart } =
     useTimer({
-      expiryTimestamp,
+      expiryTimestamp: expiryTime,
       onExpire: () => alertSound.play(),
     })
 
@@ -22,7 +22,15 @@ const Timer = (props) => {
       <button onClick={start}>Start</button>
       <button onClick={pause}>Pause</button>
       <button onClick={resume}>Resume</button>
-      <button onClick={() => restart(expiryTimestamp, false)}>Reset</button>
+      <button
+        onClick={() => {
+          const time = new Date()
+          const expiryTime = time.setSeconds(time.getSeconds() + props.duration)
+          restart(expiryTime, false)
+        }}
+      >
+        Reset
+      </button>
     </div>
   )
 }
