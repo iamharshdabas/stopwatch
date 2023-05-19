@@ -10,6 +10,7 @@ const Timer = (props) => {
   const { seconds, minutes, isRunning, start, pause, resume, restart } =
     useTimer({
       expiryTimestamp: expiryTime,
+      autoStart: false,
       onExpire: () => alertSound.play(),
     })
 
