@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types'
+import alert from './assets/wrong-answer-bass-buzzer.wav'
 import { useTimer } from 'react-timer-hook'
 
 const Timer = (props) => {
+  const alertSound = new Audio(alert)
   const time = new Date()
   const expiryTimestamp = time.setSeconds(time.getSeconds() + props.duration)
 
   const { seconds, minutes, isRunning, start, pause, resume, restart } =
     useTimer({
       expiryTimestamp,
+      onExpire: () => alertSound.play(),
     })
 
   return (
