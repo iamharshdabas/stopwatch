@@ -19,7 +19,7 @@ const Timer = (props) => {
       <button onClick={start}>Start</button>
       <button onClick={pause}>Pause</button>
       <button onClick={resume}>Resume</button>
-      <button onClick={() => restart(expiryTimestamp)}>Restart</button>
+      <button onClick={() => restart(expiryTimestamp, false)}>Reset</button>
     </div>
   )
 }
