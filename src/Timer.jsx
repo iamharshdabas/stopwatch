@@ -7,12 +7,11 @@ const Timer = (props) => {
   const time = new Date()
   const expiryTime = time.setSeconds(time.getSeconds() + props.duration)
 
-  const { seconds, minutes, isRunning, start, pause, resume, restart } =
-    useTimer({
-      expiryTimestamp: expiryTime,
-      autoStart: false,
-      onExpire: () => alertSound.play(),
-    })
+  const { seconds, minutes, isRunning, start, pause, restart } = useTimer({
+    expiryTimestamp: expiryTime,
+    autoStart: false,
+    onExpire: () => alertSound.play(),
+  })
 
   return (
     <div>
@@ -20,18 +19,23 @@ const Timer = (props) => {
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
       <p>{isRunning ? 'Running' : 'Not running'}</p>
-      <button onClick={start}>Start</button>
-      <button onClick={pause}>Pause</button>
-      <button onClick={resume}>Resume</button>
-      <button
-        onClick={() => {
-          const time = new Date()
-          const expiryTime = time.setSeconds(time.getSeconds() + props.duration)
-          restart(expiryTime, false)
-        }}
-      >
-        Reset
-      </button>
+      {isRunning ? '' : <button onClick={start}>Start</button>}
+      {isRunning ? <button onClick={pause}>Pause</button> : ''}
+      {isRunning ? (
+        <button
+          onClick={() => {
+            const time = new Date()
+            const expiryTime = time.setSeconds(
+              time.getSeconds() + props.duration
+            )
+            restart(expiryTime, false)
+          }}
+        >
+          Reset
+        </button>
+      ) : (
+        ''
+      )}
     </div>
   )
 }
