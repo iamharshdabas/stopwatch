@@ -27,6 +27,7 @@ const Timer = (props) => {
         ) : (
           ''
         )}
+        {/* TODO: make start appear when time is at initial duration */}
         {isRunning ? (
           ''
         ) : (
