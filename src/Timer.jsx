@@ -16,7 +16,7 @@ const Timer = (props) => {
 
   return (
     <div className='text-9xl text-center'>
-      <div>
+      <div className='m-24'>
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
       <div>
