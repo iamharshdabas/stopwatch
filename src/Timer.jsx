@@ -5,7 +5,7 @@ import alert from './assets/wrong-answer-bass-buzzer.wav'
 const Timer = (props) => {
   const alertSound = new Audio(alert)
   const time = new Date()
-  const expiryTime = time.setSeconds(time.getSeconds() + props.duration)
+  const timeLeft = time.setSeconds(time.getSeconds() + props.duration)
 
   const {
     seconds,
@@ -17,7 +17,7 @@ const Timer = (props) => {
     resume,
     restart,
   } = useTimer({
-    expiryTimestamp: expiryTime,
+    expiryTimestamp: timeLeft,
     autoStart: false,
     onExpire: () => alertSound.play(),
   })
@@ -41,22 +41,22 @@ const Timer = (props) => {
           )}
         </div>
         <div>
-          {!isRunning && totalSeconds !== props.duration && (
-            <button
-              className='rounded-full m-4 px-12 border-2 border-violet-500'
-              onClick={resume}
-            >
-              Resume
-            </button>
-          )}
-        </div>
-        <div>
           {!isRunning && totalSeconds === props.duration && (
             <button
               className='rounded-full h-72 m-4 px-28 border-2 border-violet-500'
               onClick={start}
             >
               Start
+            </button>
+          )}
+        </div>
+        <div>
+          {!isRunning && totalSeconds !== props.duration && (
+            <button
+              className='rounded-full m-4 px-12 border-2 border-violet-500'
+              onClick={resume}
+            >
+              Resume
             </button>
           )}
         </div>
