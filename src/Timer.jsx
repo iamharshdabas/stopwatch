@@ -30,7 +30,7 @@ const Timer = (props) => {
         ) : (
           ''
         )}
-        {/* TODO: make start appear when time is at initial duration */}
+        {/* TODO: make start appear when time is at initial duration HINT: use totalSeconds in react-timer-hook */}
         {isRunning ? (
           ''
         ) : (
