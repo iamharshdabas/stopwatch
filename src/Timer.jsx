@@ -7,11 +7,12 @@ const Timer = (props) => {
   const time = new Date()
   const expiryTime = time.setSeconds(time.getSeconds() + props.duration)
 
-  const { seconds, minutes, isRunning, start, pause, restart } = useTimer({
-    expiryTimestamp: expiryTime,
-    autoStart: false,
-    onExpire: () => alertSound.play(),
-  })
+  const { seconds, minutes, isRunning, start, pause, resume, restart } =
+    useTimer({
+      expiryTimestamp: expiryTime,
+      autoStart: false,
+      onExpire: () => alertSound.play(),
+    })
 
   return (
     <div className='text-9xl text-center'>
@@ -32,6 +33,13 @@ const Timer = (props) => {
           </button>
         ) : (
           ''
+        )}
+        {isRunning ? (
+          ''
+        ) : (
+          <button className='m-4' onClick={resume}>
+            Resume
+          </button>
         )}
         {isRunning ? (
           ''
