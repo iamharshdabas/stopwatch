@@ -15,28 +15,41 @@ const Timer = (props) => {
 
   return (
     <div className='text-9xl text-center'>
-        <div>
-          <span>{minutes}</span>:<span>{seconds}</span>
-        </div>
-        <div>
-          {isRunning ? '' : <button onClick={start}>Start</button>}
-          {isRunning ? <button onClick={pause}>Pause</button> : ''}
-          {isRunning ? (
-            <button
-              onClick={() => {
-                const time = new Date()
-                const expiryTime = time.setSeconds(
-                  time.getSeconds() + props.duration
-                )
-                restart(expiryTime, false)
-              }}
-            >
-              Reset
-            </button>
-          ) : (
-            ''
-          )}
-        </div>
+      <div>
+        <span>{minutes}</span>:<span>{seconds}</span>
+      </div>
+      <div>
+        {isRunning ? (
+          ''
+        ) : (
+          <button className='m-4' onClick={start}>
+            Start
+          </button>
+        )}
+        {isRunning ? (
+          <button className='m-4' onClick={pause}>
+            Pause
+          </button>
+        ) : (
+          ''
+        )}
+        {isRunning ? (
+          <button
+            className='m-4'
+            onClick={() => {
+              const time = new Date()
+              const expiryTime = time.setSeconds(
+                time.getSeconds() + props.duration
+              )
+              restart(expiryTime, false)
+            }}
+          >
+            Reset
+          </button>
+        ) : (
+          ''
+        )}
+      </div>
     </div>
   )
 }
