@@ -7,12 +7,20 @@ const Timer = (props) => {
   const time = new Date()
   const expiryTime = time.setSeconds(time.getSeconds() + props.duration)
 
-  const { seconds, minutes, isRunning, start, pause, resume, restart } =
-    useTimer({
-      expiryTimestamp: expiryTime,
-      autoStart: false,
-      onExpire: () => alertSound.play(),
-    })
+  const {
+    seconds,
+    minutes,
+    isRunning,
+    totalSeconds,
+    start,
+    pause,
+    resume,
+    restart,
+  } = useTimer({
+    expiryTimestamp: expiryTime,
+    autoStart: false,
+    onExpire: () => alertSound.play(),
+  })
 
   return (
     <div className='text-9xl text-center'>
@@ -30,30 +38,23 @@ const Timer = (props) => {
         ) : (
           ''
         )}
-        {/* TODO: make start appear when time is at initial duration HINT: use totalSeconds in react-timer-hook */}
-        {isRunning ? (
-          ''
-        ) : (
+        {!isRunning && totalSeconds !== props.duration && (
           <button
             className='rounded-l-full px-12 border-y-2 border-l-2 border-y-violet-500 border-l-violet-500 border-r-black'
-            onClick={start}
-          >
-            Start
-          </button>
-        )}
-        {isRunning ? (
-          ''
-        ) : (
-          <button
-            className='px-6 border-y-2 border-y-violet-500 border-x-black'
             onClick={resume}
           >
             Resume
           </button>
         )}
-        {isRunning ? (
-          ''
-        ) : (
+        {!isRunning && totalSeconds === props.duration && (
+          <button
+            className='rounded-full px-12 border-2 border-violet-500'
+            onClick={start}
+          >
+            Start
+          </button>
+        )}
+        {!isRunning && totalSeconds !== props.duration && (
           <button
             className='rounded-r-full px-12 border-y-2 border-r-2 border-y-violet-500 border-r-violet-500 border-l-black'
             onClick={() => {
