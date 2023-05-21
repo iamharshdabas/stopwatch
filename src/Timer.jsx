@@ -21,14 +21,7 @@ const Timer = (props) => {
       </div>
       <div>
         {isRunning ? (
-          ''
-        ) : (
-          <button className='m-4' onClick={start}>
-            Start
-          </button>
-        )}
-        {isRunning ? (
-          <button className='m-4' onClick={pause}>
+          <button className='rounded-full px-12' onClick={pause}>
             Pause
           </button>
         ) : (
@@ -37,7 +30,14 @@ const Timer = (props) => {
         {isRunning ? (
           ''
         ) : (
-          <button className='m-4' onClick={resume}>
+          <button className='rounded-l-full px-12' onClick={start}>
+            Start
+          </button>
+        )}
+        {isRunning ? (
+          ''
+        ) : (
+          <button className='rounded-none px-12' onClick={resume}>
             Resume
           </button>
         )}
@@ -45,7 +45,7 @@ const Timer = (props) => {
           ''
         ) : (
           <button
-            className='m-4'
+            className='rounded-r-full px-12'
             onClick={() => {
               const time = new Date()
               const expiryTime = time.setSeconds(
