@@ -28,46 +28,54 @@ const Timer = (props) => {
         <span>{minutes}</span>:<span>{seconds}</span>
       </div>
       <div>
-        {isRunning ? (
-          <button
-            className='rounded-full px-12 border-2 border-violet-500'
-            onClick={pause}
-          >
-            Pause
-          </button>
-        ) : (
-          ''
-        )}
-        {!isRunning && totalSeconds !== props.duration && (
-          <button
-            className='rounded-l-full px-12 border-y-2 border-l-2 border-y-violet-500 border-l-violet-500 border-r-black'
-            onClick={resume}
-          >
-            Resume
-          </button>
-        )}
-        {!isRunning && totalSeconds === props.duration && (
-          <button
-            className='rounded-full px-12 border-2 border-violet-500'
-            onClick={start}
-          >
-            Start
-          </button>
-        )}
-        {!isRunning && totalSeconds !== props.duration && (
-          <button
-            className='rounded-r-full px-12 border-y-2 border-r-2 border-y-violet-500 border-r-violet-500 border-l-black'
-            onClick={() => {
-              const time = new Date()
-              const expiryTime = time.setSeconds(
-                time.getSeconds() + props.duration
-              )
-              restart(expiryTime, false)
-            }}
-          >
-            Reset
-          </button>
-        )}
+        <div>
+          {isRunning ? (
+            <button
+              className='rounded-full m-4 px-12 border-2 border-violet-500'
+              onClick={pause}
+            >
+              Pause
+            </button>
+          ) : (
+            ''
+          )}
+        </div>
+        <div>
+          {!isRunning && totalSeconds !== props.duration && (
+            <button
+              className='rounded-full m-4 px-12 border-2 border-violet-500'
+              onClick={resume}
+            >
+              Resume
+            </button>
+          )}
+        </div>
+        <div>
+          {!isRunning && totalSeconds === props.duration && (
+            <button
+              className='rounded-full m-4 px-12 border-2 border-violet-500'
+              onClick={start}
+            >
+              Start
+            </button>
+          )}
+        </div>
+        <div>
+          {!isRunning && totalSeconds !== props.duration && (
+            <button
+              className='rounded-full m-4 px-12 border-2 border-violet-500'
+              onClick={() => {
+                const time = new Date()
+                const expiryTime = time.setSeconds(
+                  time.getSeconds() + props.duration
+                )
+                restart(expiryTime, false)
+              }}
+            >
+              Reset
+            </button>
+          )}
+        </div>
       </div>
     </div>
   )
