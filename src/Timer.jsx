@@ -34,6 +34,8 @@ const Timer = (props) => {
           ''
         )}
         {isRunning ? (
+          ''
+        ) : (
           <button
             className='m-4'
             onClick={() => {
@@ -46,8 +48,6 @@ const Timer = (props) => {
           >
             Reset
           </button>
-        ) : (
-          ''
         )}
       </div>
     </div>
