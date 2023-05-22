@@ -12,17 +12,26 @@ const Form = (props) => {
   }
 
   return (
-    <div>
+    <div className='text-3xl text-center'>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='durationInput'></label>
-        <input
-          type='number'
-          name='durationInput'
-          placeholder='Enter duration'
-          value={number}
-          onChange={(event) => setNumber(event.target.value)}
-        />
-        <button type='submit'>start</button>
+        <div>
+          <label htmlFor='durationInput'></label>
+          <input
+            type='number'
+            name='durationInput'
+            placeholder='Enter duration'
+            value={number}
+            onChange={(event) => setNumber(event.target.value)}
+          />
+        </div>
+        <div>
+          <button
+            className='my-2 py-1 rounded-full border-2 w-28 hover:border-violet-500'
+            type='submit'
+          >
+            start
+          </button>
+        </div>
       </form>
     </div>
   )
