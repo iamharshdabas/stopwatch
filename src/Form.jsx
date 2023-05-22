@@ -1,12 +1,14 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 
-const Form = ({ setDuration }) => {
+const Form = (props) => {
   const [number, setNumber] = useState('')
 
   function handleSubmit(event) {
     event.preventDefault()
-    setDuration(Number(number))
+    props.setDuration(() => {
+      return Number(number)
+    })
   }
 
   return (
@@ -24,6 +26,10 @@ const Form = ({ setDuration }) => {
       </form>
     </div>
   )
+}
+
+Form.propTypes = {
+  setDuration: PropTypes.func,
 }
 
 export default Form
